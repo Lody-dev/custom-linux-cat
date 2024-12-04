@@ -6,7 +6,7 @@
 /*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 20:26:10 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/11/30 21:28:07 by dsarmien         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:24:56 by viaremko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*new;
@@ -76,5 +77,6 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (NULL);
 	ft_memcpy(new, s1, s1_len);
 	ft_memcpy(new + s1_len, s2, s2_len);
+	new[fn_len] = '\0';
 	return (new);
 }

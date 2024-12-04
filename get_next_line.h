@@ -6,7 +6,7 @@
 /*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 17:32:51 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/11/30 21:36:23 by dsarmien         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:30:20 by viaremko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 /* DEFINES */
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
 
 # ifndef MAX_FD

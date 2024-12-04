@@ -6,7 +6,7 @@
 /*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 20:29:32 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/12/02 19:24:14 by viaremko         ###   ########.fr       */
+/*   Updated: 2024/12/03 20:49:59 by dsarmien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,17 @@ char	*ft_read_fd(int fd, char *buffer)
 	ptr = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
-	while ((!buffer) || (!ft_strchr(buffer, '\n') && bytes > 0))
+	while ((!ft_strchr(buffer, '\n') && bytes > 0))
 	{
 		bytes = read(fd, ptr, BUFFER_SIZE);
 		if (bytes == -1)
-			return (ft_memclean(ptr));
-		ptr[bytes] = '\0'; // we need this?
+			return (ft_memclean(ptr), ft_memclean(buffer));
+		ptr[bytes] = '\0';
 		data = buffer;
 		buffer = ft_strjoin(buffer, ptr);
-		free(data);
-		ft_memclean(ptr);
+		ft_memclean(data);
 	}
-	// free(ptr);
+	ft_memclean(ptr);
 	return (buffer);
 }
 
@@ -41,8 +40,6 @@ char	*ft_get_line(char *str)
 {
 	char	*next_line;
 	char	*n_pos;
-	char	*aux;
-	char	*buffer_update;
 	size_t	i;
 
 	if (!*str)
@@ -57,18 +54,35 @@ char	*ft_get_line(char *str)
 		return (NULL);
 	ft_memcpy(next_line, str, i);
 	next_line[i] = '\0';
-	aux = str;
-	buffer_update = malloc(((ft_strlen(str) - i) + 1) * sizeof(char));
-	ft_memcpy(buffer_update, n_pos, ((ft_strlen(str)-i)));
-	str = buffer_update;
-	ft_memclean(aux);
- 	return (next_line);
+	return (next_line);
+}
+
+char	*ft_buffer_update(char *buffer)
+{
+	int		i;
+	int		j;
+	char	*ptr;
+
+	i = 0;
+	while (buffer[i] != '\0' && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\0')
+		return (NULL);
+	ptr = malloc(((ft_strlen(buffer) - i) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	i++;
+	j = 0;
+	while (buffer[i])
+		ptr[j++] = buffer[i++];
+	ptr[j] = '\0';
+	return (ptr);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-//	char		*tmp_buffer;
+	static char	*buffer = NULL;
+	char		*tmp_buffer;
 	char		*line;
 
 	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0)
@@ -77,19 +91,15 @@ char	*get_next_line(int fd)
 	{
 		buffer = malloc(1 * sizeof(char));
 		if (!buffer)
-			return(free(buffer), NULL);
-		buffer[0] = '\0';//??????
+			return (free(buffer), NULL);
+		buffer[0] = '\0';
 	}
 	buffer = ft_read_fd(fd, buffer);
-	//printf("Buffer Pointer: %p -> %s\n", buffer, buffer);
-	//tmp_buffer = buffer; // forgot to free
+	if (!buffer)
+		return (NULL);
+	tmp_buffer = buffer;
 	line = ft_get_line(buffer);
-	//printf("Line Pointer: %p -> %s\n", line, line);
-	/*
-		WORKING HERE / ToDo
-		
-		-> We need to update the buffer
-	*/
-//	ft_update_buffer(line);
+	buffer = ft_buffer_update(buffer);
+	free(tmp_buffer);
 	return (line);
 }
