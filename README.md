@@ -17,7 +17,7 @@ It reads from the specified file descriptor and returns the next line of text. T
 
 Clone the repository and compile the project using the following commands:
 
-git clone https://github.com/yourusername/get_next_line.git
+git clone git@github.com:Lody-dev/get_next_line.git
 cd get_next_line
 gcc -Wall -Wextra -Werror -c get_next_line.c get_next_line_utils.c
 gcc -o get_next_line get_next_line.o get_next_line_utils.o
