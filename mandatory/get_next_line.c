@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: viaremko <lodyiaremko@proton.me>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 20:29:32 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/12/03 20:49:59 by dsarmien         ###   ########.fr       */
+/*   Created: 2024/11/30 20:29:32 by viaremko          #+#    #+#             */
+/*   Updated: 2024/12/10 19:14:03 by viaremko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_read_fd(int fd, char *buffer)
 	ptr = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
-	while ((!ft_strchr(buffer, '\n') && bytes > 0))
+	while (buffer && (!ft_strchr(buffer, '\n') && bytes > 0))
 	{
 		bytes = read(fd, ptr, BUFFER_SIZE);
 		if (bytes == -1)
@@ -63,6 +63,8 @@ char	*ft_buffer_update(char *buffer)
 	int		j;
 	char	*ptr;
 
+	if (!buffer)
+		return (NULL);
 	i = 0;
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;

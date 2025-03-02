@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: viaremko <lodyiaremko@proton.me>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 17:32:51 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/12/04 13:30:20 by viaremko         ###   ########.fr       */
+/*   Created: 2024/11/19 17:32:51 by viaremko          #+#    #+#             */
+/*   Updated: 2024/12/04 17:01:38 by viaremko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 # include <stdlib.h> // for size_t, malloc() and free() usage
 # include <unistd.h> // for read() and ssize_t usage
-# include <stdio.h> // for printft
+
 /* DEFINES */
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 10
 # endif
 
 # ifndef MAX_FD

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsarmien <dsarmien@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: viaremko <lodyiaremko@proton.me>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 20:26:10 by dsarmien          #+#    #+#             */
-/*   Updated: 2024/12/04 13:24:56 by viaremko         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:53:58 by viaremko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_memclean(char *ptr)
 
@@ -27,6 +27,8 @@ size_t	ft_strlen(const char *s)
 {
 	const char	*end;
 
+	if (!s)
+		return (0);
 	end = s;
 	while (*end)
 		end++;
