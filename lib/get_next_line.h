@@ -19,6 +19,8 @@
 
 # include <stdlib.h> // for size_t, malloc() and free() usage
 # include <unistd.h> // for read() and ssize_t usage
+#include <fcntl.h>
+#include <stdio.h>
 
 /* DEFINES */
 

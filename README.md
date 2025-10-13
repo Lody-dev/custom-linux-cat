@@ -1,54 +1,60 @@
-# Get Next Line
+# 🐾 custom-linux-cat
 
-## Overview
+A minimalist reimplementation of the classic **Linux `cat` command**, written in **C**.  
+This project focuses on mastering low-level file I/O, dynamic memory allocation, and efficient reading from file descriptors — without relying on high-level libraries.
 
-The **Get Next Line** project implements a function that reads a line from a file descriptor. This project focuses on file handling, memory allocation, and file I/O in C. 
-The function should return one line at a time, including the newline character, until the end of the file.
+---
 
-## Objective
+## 🧠 Overview
 
-The goal is to implement the following function:
+`custom-linux-cat` reads files line by line and outputs their content to standard output, just like the original `cat` utility.  
+It’s built entirely using **system calls** (`open`, `read`, `write`, `close`) and a **custom line-reading function** similar to `get_next_line()`.
 
-char *get_next_line(int fd);
+This project demonstrates:
+- Manual buffer management  
+- Working directly with file descriptors  
+- Handling end-of-file (EOF) and partial reads  
+- Clean and safe memory usage  
 
-It reads from the specified file descriptor and returns the next line of text. The function should handle multiple consecutive calls to return lines one at a time, managing memory efficiently.
+---
 
-## Installation
+## ⚙️ Features
+- Handles both small and large files efficiently  
+- Implements line-by-line reading logic using static buffers  
 
-Clone the repository and compile the project using the following commands:
+---
 
+
+### 🏗️ Build
+```bash
+make
 ```
-git clone git@github.com:Lody-dev/get_next_line.git
 
-cd get_next_line
-
-gcc -Wall -Wextra -Werror -c get_next_line.c get_next_line_utils.c
-
-gcc -o get_next_line get_next_line.o get_next_line_utils.
+### ▶️ Run
+```bash
+./custom-linux-cat file.txt
 ```
 
-## Files
+---
 
-- **`get_next_line.c`**: Contains the main function to read a line from a file descriptor.
-- **`get_next_line_utils.c`**: Utility functions to manage strings, such as `ft_strjoin` and `ft_strlen`.
-- **`get_next_line.h`**: Header file containing function prototypes.
+## 🧰 Technologies
+- **Language:** C  
+- **System Calls:** `open`, `read`, `write`, `close`  
+- **Build System:** Makefile  
+- **Platform:** Linux / macOS  
 
-## How it Works
+---
 
-1. **Reading Data**: Reads data from a file descriptor into a static buffer until a newline or EOF is encountered.
-2. **Dynamic Memory Allocation**: Allocates memory dynamically for each line returned.
-3. **Buffer Management**: Keeps track of leftover data for subsequent reads.
-4. **Return Value**: Returns the next line or `NULL` when EOF is reached.
+## 🎯 Learning Goals
+- Practice **low-level file operations** in C  
+- Understand **buffered input/output mechanisms**  
+- Write **robust, memory-safe, and modular** C code  
 
-## Testing
+---
 
-Test the function by calling `get_next_line` on different file descriptors. Make sure to handle edge cases like empty files or files without newlines.
-
-## Notes
-
-- Always free the memory returned by `get_next_line` to prevent memory leaks.
-- Handle file descriptors and potential errors carefully.
-
-## Bonus
-
-In the bonus part of the project, I added support for handling multiple file descriptors, allowing the `get_next_line` function to work with several files simultaneously. This required modifications to properly manage separate buffers for each file descriptor, ensuring that the function works efficiently even when reading from multiple sources concurrently.
+## 📝 Example Output
+```bash
+$ ./custom-linux-cat hello.txt
+Hello world!
+This is a test file.
+```

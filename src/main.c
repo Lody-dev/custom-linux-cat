@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "../lib/get_next_line.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
 
-	fd = open("tester", O_RDONLY);
+	if(argc != 2)
+		printf("Usage: custom-linux-cat file.txt");
+
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error reading!̣\n");
