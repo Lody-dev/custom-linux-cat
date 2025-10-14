@@ -17,26 +17,26 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "🔧 Linking $(NAME)..."
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "✅ Build complete!"
 
 # --- Compile .c → .o ---
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
 	@echo "🧩 Compiling $<..."
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # --- Ensure obj/ folder exists ---
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 # --- Cleanup ---
 clean:
 	@echo "🧹 Removing object files..."
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "🗑️  Removing executable..."
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
